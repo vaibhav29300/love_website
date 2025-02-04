@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Valentine's Day ❤️</title>
+    <style>
+        body {
+            background: linear-gradient(to right, #ff9a9e, #fad0c4);
+            font-family: 'Arial', sans-serif;
+            text-align: center;
+            color: white;
+            overflow: hidden;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-top: 20px;
+        }
+
+        .heart {
+            font-size: 4rem;
+            animation: heartbeat 1s infinite;
+        }
+
+        @keyframes heartbeat {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+            100% { transform: scale(1); }
+        }
+
+        .timer {
+            font-size: 1.5rem;
+            margin-top: 10px;
+        }
+
+        .slideshow {
+            width: 300px;
+            height: 300px;
+            margin: 20px auto;
+            overflow: hidden;
+            border-radius: 15px;
+        }
+
+        .slideshow img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: none;
+        }
+
+        .song {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Happy Valentine's Day, My Love ❤️</h1>
+    <p class="heart">💖💞</p>
+    <div class="timer" id="timer">Loading...</div>
+    
+    <div class="slideshow">
+        <img src="your-photo1.jpg" class="slide" alt="Us">
+        <img src="your-photo2.jpg" class="slide" alt="Together">
+        <img src="your-photo3.jpg" class="slide" alt="Love">
+    </div>
+
+    <audio class="song" controls autoplay loop>
+        <source src="your-love-song.mp3" type="audio/mpeg">
+    </audio>
+
+    <script>
+        function updateTimer() {
+            const startDate = new Date("2020-02-14").getTime();
+            const now = new Date().getTime();
+            const difference = now - startDate;
+            
+            const days = Math.floor(difference / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((difference % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((difference % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((difference % (1000 * 60)) / 1000);
+            
+            document.getElementById("timer").innerText = `We have been together for ${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds!`;
+        }
+        setInterval(updateTimer, 1000);
+        updateTimer();
+        
+        let slides = document.querySelectorAll('.slide');
+        let index = 0;
+        function showSlides() {
+            slides.forEach(slide => slide.style.display = "none");
+            slides[index].style.display = "block";
+            index = (index + 1) % slides.length;
+        }
+        setInterval(showSlides, 3000);
+        showSlides();
+    </script>
+</body>
+</html>
