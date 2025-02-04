@@ -6,21 +6,42 @@
     <title>Happy Valentine's Day ❤️</title>
     <style>
         body {
-            background: linear-gradient(to right, #ff9a9e, #fad0c4);
-            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            font-family: 'Georgia', serif;
             text-align: center;
             color: white;
             overflow: hidden;
         }
 
+        .background-slideshow {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .background-slideshow img {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 2s ease-in-out;
+        }
+
         h1 {
-            font-size: 3rem;
+            font-size: 4rem;
             margin-top: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
 
         .heart {
-            font-size: 4rem;
+            font-size: 5rem;
             animation: heartbeat 1s infinite;
+            margin: 20px 0;
         }
 
         @keyframes heartbeat {
@@ -30,44 +51,49 @@
         }
 
         .timer {
-            font-size: 1.5rem;
+            font-size: 1.8rem;
             margin-top: 10px;
+            font-style: italic;
         }
 
-        .slideshow {
-            width: 300px;
-            height: 300px;
-            margin: 20px auto;
-            overflow: hidden;
-            border-radius: 15px;
-        }
-
-        .slideshow img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: none;
-        }
-
-        .song {
+        .drive-link {
             margin-top: 20px;
+            font-size: 1.5rem;
+        }
+
+        .drive-link a {
+            text-decoration: none;
+            color: white;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 20px;
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+
+        .drive-link a:hover {
+            background: rgba(255, 255, 255, 0.4);
         }
     </style>
 </head>
 <body>
+    <div class="background-slideshow">
+        <img src="your-photo1.jpg" class="bg-slide" alt="Us">
+        <img src="your-photo2.jpg" class="bg-slide" alt="Together">
+        <img src="your-photo3.jpg" class="bg-slide" alt="Love">
+    </div>
+
     <h1>Happy Valentine's Day, My Love ❤️</h1>
     <p class="heart">💖💞</p>
     <div class="timer" id="timer">Loading...</div>
-    
-    <div class="slideshow">
-        <img src="your-photo1.jpg" class="slide" alt="Us">
-        <img src="your-photo2.jpg" class="slide" alt="Together">
-        <img src="your-photo3.jpg" class="slide" alt="Love">
-    </div>
 
     <audio class="song" controls autoplay loop>
         <source src="your-love-song.mp3" type="audio/mpeg">
     </audio>
+
+    <div class="drive-link">
+        <p>Want to see more of our memories? Click below:</p>
+        <a href="your-google-drive-link" target="_blank">View Our Photos 📸</a>
+    </div>
 
     <script>
         function updateTimer() {
@@ -84,16 +110,17 @@
         }
         setInterval(updateTimer, 1000);
         updateTimer();
-        
-        let slides = document.querySelectorAll('.slide');
-        let index = 0;
-        function showSlides() {
-            slides.forEach(slide => slide.style.display = "none");
-            slides[index].style.display = "block";
-            index = (index + 1) % slides.length;
+
+        let bgSlides = document.querySelectorAll('.bg-slide');
+        let bgIndex = 0;
+        function showBgSlides() {
+            bgSlides.forEach(slide => slide.style.opacity = "0");
+            bgSlides[bgIndex].style.opacity = "1";
+            bgIndex = (bgIndex + 1) % bgSlides.length;
         }
-        setInterval(showSlides, 3000);
-        showSlides();
+        setInterval(showBgSlides, 4000);
+        showBgSlides();
     </script>
 </body>
 </html>
+
